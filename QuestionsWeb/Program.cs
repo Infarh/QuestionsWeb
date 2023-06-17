@@ -1,14 +1,14 @@
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddControllers(); // WebAPI на основе контроллеров
-builder.Services.AddControllersWithViews(); // Инфраструктура MVC = Контроллеры + представления (Razor)
-//builder.Services.AddRazorPages(); // Работа с веб-страницами
+//builder.Services.AddControllers(); // WebAPI РЅР° РѕСЃРЅРѕРІРµ РєРѕРЅС‚СЂРѕР»Р»РµСЂРѕРІ
+builder.Services.AddControllersWithViews(); // РРЅС„СЂР°СЃС‚СЂСѓРєС‚СѓСЂР° MVC = РљРѕРЅС‚СЂРѕР»Р»РµСЂС‹ + РїСЂРµРґСЃС‚Р°РІР»РµРЅРёСЏ (Razor)
+//builder.Services.AddRazorPages(); // Р Р°Р±РѕС‚Р° СЃ РІРµР±-СЃС‚СЂР°РЅРёС†Р°РјРё
 
 /* --------------------------------------------------- */
 
 var app = builder.Build();
 
-app.UseRouting(); // Разбор маршрутов
+app.UseRouting(); // Р Р°Р·Р±РѕСЂ РјР°СЂС€СЂСѓС‚РѕРІ
 
 //var str = app.Configuration["TestString"];
 
@@ -17,8 +17,8 @@ app.UseRouting(); // Разбор маршрутов
 //app.MapGet("Test", () => str);
 app.MapGet("Test", () => app.Configuration["TestString"]);
 
-//app.MapDefaultControllerRoute(); // Регистрация стандартного маршрута для MVC
-app.MapControllerRoute("default", "/{controller=Home}/{action=Index}/{id?}"); // Определение маршрута по умолчанию
+//app.MapDefaultControllerRoute(); // Р РµРіРёСЃС‚СЂР°С†РёСЏ СЃС‚Р°РЅРґР°СЂС‚РЅРѕРіРѕ РјР°СЂС€СЂСѓС‚Р° РґР»СЏ MVC
+app.MapControllerRoute("default", "/{controller=Home}/{action=Index}/{id?}"); // РћРїСЂРµРґРµР»РµРЅРёРµ РјР°СЂС€СЂСѓС‚Р° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 
 /* --------------------------------------------------- */
 

@@ -11,14 +11,11 @@
                 <th>Фамилия</th>
                 <th>Имя</th>
                 <th>Комментарий</th>
-                <th>Test</th>
+                <th></th>
             </tr>
             </thead>
 
             <tbody>
-            @{
-                var index = 0;
-            }
             @foreach (var person in Model)
             {
                 <tr>
@@ -32,7 +29,9 @@
                     </td>
                     <td>@person.Name</td>
                     <td>@person.Description</td>
-                    <td>@(index += 7)</td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@person.Id" class="text-danger">del.</a>
+                    </td>
                 </tr>
             }
             </tbody>

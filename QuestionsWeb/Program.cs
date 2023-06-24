@@ -1,3 +1,4 @@
+using QRCoder;
 using QuestionsWeb.Services;
 using QuestionsWeb.Services.Interfaces;
 
@@ -6,11 +7,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews(); // Инфраструктура MVC = Контроллеры + представления (Razor)
 
 builder.Services
-    .AddTransient<IQRCodeService, QRCodeService>();
+    .AddTransient<IQRCodeService, QRCodeService>()
+    .AddSingleton<QRCodeGenerator>()
+    //.AddScoped<IPersonsStore, InMemoryPersonsStore>();
+    .AddSingleton<IPersonsStore, InMemoryPersonsStore>();
 
 /* --------------------------------------------------- */
 
 var app = builder.Build();
+
+//using (var scope = app.Services.CreateScope())
+//{
+//    var service_manager = scope.ServiceProvider;
+
+//    var persons = service_manager.GetRequiredService<IPersonsStore>();
+//}
 
 if (app.Environment.IsDevelopment())
 {

@@ -1,31 +1,38 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using QuestionsWeb.Models;
+using QuestionsWeb.Services.Interfaces;
 
 namespace QuestionsWeb.Controllers;
 
 public class PersonController : Controller
 {
-    private static List<Person> __Persons = new()
+    private readonly IPersonsStore _PersonsStore;
+
+    public PersonController(IPersonsStore PersonsStore)
     {
-        new() { Id = 1, LastName = "Иванов", Name = "Иван" },
-        new() { Id = 2, LastName = "Петров", Name = "Пётр" },
-        new() { Id = 3, LastName = "Сидоров", Name = "Сидор" },
-    };
+        _PersonsStore = PersonsStore;
+    }
 
     public IActionResult Index()
     {
-        return View(__Persons);
+        var persons = _PersonsStore.GetAll();
+
+        return View(persons);
     }
 
     public IActionResult Details(int id)
     {
-        var person = __Persons.FirstOrDefault(x => x.Id == id);
+        var person = _PersonsStore.GetById(id);
 
         if (person == null)
             return NotFound();
 
         return View(person);
     }
+
+    //public IActionResult Details(int id) => __Persons.FirstOrDefault(x => x.Id == id) is { } person 
+    //    ? View(person) 
+    //    : NotFound();
 
     //public IActionResult Create()
     //{
@@ -37,8 +44,26 @@ public class PersonController : Controller
 
     //}
 
-    //public IActionResult Delete(int id)
-    //{
+    public IActionResult Delete(int id)
+    {
+        var person = _PersonsStore.GetById(id);
 
-    //}
+        if (person == null)
+            return NotFound();
+
+        return View(person);
+    }
+
+    [HttpPost]
+    public IActionResult DeleteConfirm(int id)
+    {
+        var person = _PersonsStore.GetById(id);
+
+        if (person == null)
+            return NotFound();
+
+        _PersonsStore.Delete(id);
+
+        return RedirectToAction("Index");
+    }
 }

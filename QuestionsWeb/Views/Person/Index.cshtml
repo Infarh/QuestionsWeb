@@ -1,32 +1,44 @@
 ﻿@model IEnumerable<QuestionsWeb.Models.Person>
 
-<table>
-    <thead>
-        <tr>
-            <th>Id</th>
-            <th>Фамилия</th>
-            <th>Имя</th>
-            <th>Комментарий</th>
-            <th>Test</th>
-        </tr>
-    </thead>
+<section class="layout-pt-lg layout-pb-md">
+    
+    <div data-anim-wrap class="container">
 
-    <tbody>
-        @{
-            var index = 0;
-        }
-        @foreach (var person in Model)
-        {
+        <table class="table">
+            <thead>
             <tr>
-                <td>@person.Id</td>
-                <td>
-                    <a href="/person/details/@person.Id">@person.LastName</a>
-                </td>
-                <td>@person.Name</td>
-                <td>@person.Description</td>
-                <td>@(index += 7)</td>
+                <th>Id</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Комментарий</th>
+                <th>Test</th>
             </tr>
-        }
-    </tbody>
+            </thead>
 
-</table>
+            <tbody>
+            @{
+                var index = 0;
+            }
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.Id</td>
+                    <td>
+                        <a asp-controller="Person" 
+                           asp-action="Details"
+                           asp-route-Id="@person.Id">
+                            @person.LastName
+                        </a>
+                    </td>
+                    <td>@person.Name</td>
+                    <td>@person.Description</td>
+                    <td>@(index += 7)</td>
+                </tr>
+            }
+            </tbody>
+
+        </table>
+
+    </div>
+
+</section>

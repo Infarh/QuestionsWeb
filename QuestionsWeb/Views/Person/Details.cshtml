@@ -1,38 +1,29 @@
 ﻿@model Person
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
+<section class="layout-pt-lg layout-pb-md">
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
+    <div data-anim-wrap class="container">
 
-    <h2>Информация о человеке</h2>
+        <h2>Информация о человеке</h2>
 
-    <a href="/">Домой</a> |
-    <a href="/person">К списку людей</a>
+        <a href="/">Домой</a> |
+        <a href="/person">К списку людей</a>
 
 
-    <dl>
-        <dd>Id:</dd>
-        <dt>@Model.Id</dt>
+        <dl>
+            <dd>Id:</dd>
+            <dt>@Model.Id</dt>
 
-        <dd>Имя:</dd>
-        <dt>@Model.Name</dt>
+            <dd>Имя:</dd>
+            <dt>@Model.Name</dt>
 
-        <dd>Фамилия:</dd>
-        <dt>@Model.LastName</dt>
-    </dl>
-    <hr />
+            <dd>Фамилия:</dd>
+            <dt>@Model.LastName</dt>
+        </dl>
+        <hr />
 
-    <p>@Model.Description</p>
+        <p>@Model.Description</p>
 
+    </div>
 
-
-</body>
-</html>
+</section>

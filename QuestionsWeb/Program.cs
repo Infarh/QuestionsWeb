@@ -1,6 +1,12 @@
+using QuestionsWeb.Services;
+using QuestionsWeb.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllersWithViews(); // Инфраструктура MVC = Контроллеры + представления (Razor)
+
+builder.Services
+    .AddTransient<IQRCodeService, QRCodeService>();
 
 /* --------------------------------------------------- */
 

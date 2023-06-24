@@ -23,6 +23,10 @@
         <hr />
 
         <p>@Model.Description</p>
+        
+        @*<img src="~/qr/code?str=@Model.Name" width="200"/>*@
+        <img src="@Url.Action("Code", "QR", new { str = $"Id={Model.Id},LastName={Model.LastName},Name={Model.Name}" })"
+             width="300"/>
 
     </div>
 

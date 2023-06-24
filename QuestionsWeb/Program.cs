@@ -6,8 +6,9 @@ builder.Services.AddControllersWithViews(); // Инфраструктура MVC 
 
 var app = builder.Build();
 
-app.UseRouting(); // Разбор маршрутов
+app.UseStaticFiles(/*new StaticFileOptions { ServeUnknownFileTypes = true }*/);
 
+app.UseRouting(); // Разбор маршрутов
 
 
 app.MapGet("Test", () => app.Configuration["TestString"]);

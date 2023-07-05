@@ -10,7 +10,8 @@ builder.Services
     .AddTransient<IQRCodeService, QRCodeService>()
     .AddSingleton<QRCodeGenerator>()
     //.AddScoped<IPersonsStore, InMemoryPersonsStore>();
-    .AddSingleton<IPersonsStore, InMemoryPersonsStore>();
+    .AddSingleton<IPersonsStore, InMemoryPersonsStore>()
+    .AddSingleton<IBlogsData, InMemoryBlogsData>();
 
 /* --------------------------------------------------- */
 

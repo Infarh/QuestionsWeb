@@ -2,7 +2,7 @@
     Layout = "_LayoutAccount";
 }
 
-<section class="form-page">
+<section class="form-page js-mouse-move-container">
     <div class="form-page__img bg-dark-1">
         <div class="form-page-composition">
             <div class="-bg"><img data-move="30" class="js-mouse-move" src="~/img/login/bg.png" alt="bg"></div>
@@ -16,31 +16,23 @@
     <div class="form-page__content lg:py-50">
         <div class="container">
             <div class="row justify-center items-center">
-                <div class="col-xl-8 col-lg-9">
+                <div class="col-xl-6 col-lg-8">
                     <div class="px-50 py-50 md:px-25 md:py-25 bg-white shadow-1 rounded-16">
-                        <h3 class="text-30 lh-13">Sign Up</h3>
-                        <p class="mt-10">Already have an account? <a asp-controller="Account" asp-action="Login" class="text-purple-1">Log in</a></p>
+                        <h3 class="text-30 lh-13">Login</h3>
+                        <p class="mt-10">Don't have an account yet? <a asp-controller="Account" asp-action="SignUp" class="text-purple-1">Sign up for free</a></p>
 
                         <form class="contact-form respondForm__form row y-gap-20 pt-30" action="#">
-                            <div class="col-lg-6">
-                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Email address *</label>
-                                <input type="text" name="title" placeholder="Name">
-                            </div>
-                            <div class="col-lg-6">
-                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Username *</label>
-                                <input type="text" name="title" placeholder="Name">
-                            </div>
-                            <div class="col-lg-6">
-                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Password *</label>
-                                <input type="text" name="title" placeholder="Name">
-                            </div>
-                            <div class="col-lg-6">
-                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Confirm Password *</label>
+                            <div class="col-12">
+                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Username Or Email</label>
                                 <input type="text" name="title" placeholder="Name">
                             </div>
                             <div class="col-12">
+                                <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Password</label>
+                                <input type="password" name="title" placeholder="Password">
+                            </div>
+                            <div class="col-12">
                                 <button type="submit" name="submit" id="submit" class="button -md -green-1 text-dark-1 fw-500 w-1/1">
-                                    Register
+                                    Login
                                 </button>
                             </div>
                         </form>

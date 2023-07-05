@@ -178,8 +178,8 @@
                     <div class="mobile-bg js-mobile-bg"></div>
 
                     <div class="d-none xl:d-flex items-center px-20 py-20 border-bottom-light">
-                        <a href="login.html" class="text-dark-1">Log in</a>
-                        <a href="signup.html" class="text-dark-1 ml-30">Sign Up</a>
+                        <a asp-controller="Account" asp-action="Login" class="text-dark-1">Log in</a>
+                        <a asp-controller="Account" asp-action="SignUp" class="text-dark-1 ml-30">Sign Up</a>
                     </div>
 
                     <partial name="Partial/_MainMenu"/>
@@ -357,8 +357,8 @@
                     </div>
 
                     <div class="header-right__buttons d-flex items-center ml-30 md:d-none">
-                        <a href="login.html" class="button -underline text-white">Log in</a>
-                        <a href="signup.html" class="button -sm -white text-dark-1 ml-30">Sign up</a>
+                        <a asp-controller="Account" asp-action="Login" class="button -underline text-white">Log in</a>
+                        <a asp-controller="Account" asp-action="SignUp" class="button -sm -white text-dark-1 ml-30">Sign up</a>
                     </div>
                 </div>
             </div>

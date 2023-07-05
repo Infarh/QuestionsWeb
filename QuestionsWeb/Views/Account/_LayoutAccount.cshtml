@@ -14,7 +14,7 @@
                     <div class="header-left">
 
                         <div class="header__logo ">
-                            <a data-barba href="index.html">
+                            <a data-barba asp-controller="Home" asp-action="Index">
                                 <img src="~/img/general/logo.svg" alt="logo">
                             </a>
                         </div>
@@ -31,8 +31,8 @@
                                 <div class="mobile-bg js-mobile-bg"></div>
 
                                 <div class="d-none xl:d-flex items-center px-20 py-20 border-bottom-light">
-                                    <a href="login.html" class="text-dark-1">Log in</a>
-                                    <a href="signup.html" class="text-dark-1 ml-30">Sign Up</a>
+                                    <a asp-controller="Account" asp-action="Login" class="text-dark-1">Log in</a>
+                                    <a asp-controller="Account" asp-action="SignUp" class="text-dark-1 ml-30">Sign Up</a>
                                 </div>
 
                                 <div class="menu js-navList">
@@ -47,7 +47,7 @@
                                                     <a href="#"><i class="icon-chevron-left text-13 mr-10"></i> Home</a>
                                                 </li>
 
-                                                <li><a href="index.html">Home 1</a></li>
+                                                <li><a asp-controller="Home" asp-action="Index">Home 1</a></li>
 
                                                 <li><a href="home-2.html">Home 2</a></li>
 
@@ -595,11 +595,11 @@
                                                 </li>
 
                                                 <li>
-                                                    <a href="login.html">Login</a>
+                                                    <a asp-controller="Account" asp-action="Login">Login</a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="signup.html">Register</a>
+                                                    <a asp-controller="Account" asp-action="SignUp">Register</a>
                                                 </li>
 
                                                 <li>
@@ -669,7 +669,7 @@
                         </div>
 
                         <div class="header-right__buttons md:d-none">
-                            <a href="signup.html" class="button -sm -rounded -dark-1 text-white">Sign Up</a>
+                            <a asp-controller="Account" asp-action="SignUp" class="button -sm -rounded -dark-1 text-white">Sign Up</a>
                         </div>
                     </div>
                 </div>
@@ -681,10 +681,7 @@
 
     <div class="content-wrapper  js-content-wrapper">
 
-        <section class="form-page">
-            @RenderBody()
-        </section>
-
+        @RenderBody()
 
     </div>
 </main>

@@ -1,53 +1,43 @@
 ﻿@model IEnumerable<QuestionsWeb.Models.Person>
-@{
-    Layout = null;
-}
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Люди</title>
-</head>
-<body>
+<section class="layout-pt-lg layout-pb-md">
     
-<h2>Люди</h2>
+    <div data-anim-wrap class="container">
 
-<a href="/">Домой</a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Комментарий</th>
+                <th></th>
+            </tr>
+            </thead>
 
-<table>
-    <thead>
-    <tr>
-        <th>Id</th>
-        <th>Фамилия</th>
-        <th>Имя</th>
-        <th>Комментарий</th>
-        <th>Test</th>
-    </tr>
-    </thead>
-    
-    <tbody>
-    @{
-        var index = 0;
-    }
-    @foreach (var person in Model)
-    {
-        <tr>
-            <td>@person.Id</td>
-            <td>
-                <a href="/person/details/@person.Id">@person.LastName</a>
-            </td>
-            <td>@person.Name</td>
-            <td>@person.Description</td>
-            <td>@(index += 7)</td>
-        </tr>
-    }
-    </tbody>
+            <tbody>
+            @foreach (var person in Model)
+            {
+                <tr>
+                    <td>@person.Id</td>
+                    <td>
+                        <a asp-controller="Person" 
+                           asp-action="Details"
+                           asp-route-Id="@person.Id">
+                            @person.LastName
+                        </a>
+                    </td>
+                    <td>@person.Name</td>
+                    <td>@person.Description</td>
+                    <td>
+                        <a asp-action="Delete" asp-route-id="@person.Id" class="text-danger">del.</a>
+                    </td>
+                </tr>
+            }
+            </tbody>
 
-</table>
+        </table>
 
-<p>@index</p>
+    </div>
 
-</body>
-</html>
+</section>

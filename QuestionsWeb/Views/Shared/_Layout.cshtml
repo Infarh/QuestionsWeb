@@ -1,0 +1,33 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    @await Html.PartialAsync("Partial/_Styles")
+
+    <title>@ViewBag.Title | QuestionWeb</title>
+</head>
+
+<body class="preloader-visible" data-barba="wrapper">
+    <partial name="Partial/_Preloader"/>
+
+    <main class="main-content  ">
+
+       <partial name="Partial/_Header"/>
+
+        <div class="content-wrapper  js-content-wrapper">
+
+           @RenderBody()
+
+            <partial name="Partial/_Footer"/>
+
+        </div>
+    </main>
+
+   <partial name="Partial/_Scripts"/>
+</body>
+
+</html>

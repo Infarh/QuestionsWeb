@@ -1,22 +1,15 @@
 ﻿@{
-    Layout = null;
+    ViewBag.Title = "Главная страница";
 }
 
-<!DOCTYPE html>
+<partial name="Partial/_TopMenu"/>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <h2>Home - Index</h2>
+<partial name="Partial/_Block1"/>
 
-    <p>Первое представление</p>
+<partial name="Partial/_Block2"/>
 
-    <a href="/home/testaction">Переход во второе представление</a>
-    <br />
-    <a href="/person">Переход  к людям</a>
+<partial name="Partial/_Block3"/>
 
-</body>
-</html>
+<partial name="Partial/_Block4"/>
+
+<partial name="Partial/_Block5"/>

@@ -1,20 +1,38 @@
+using QRCoder;
+using QuestionsWeb.Services;
+using QuestionsWeb.Services.Interfaces;
+
 var builder = WebApplication.CreateBuilder(args);
 
-//builder.Services.AddControllers(); // WebAPI на основе контроллеров
 builder.Services.AddControllersWithViews(); // Инфраструктура MVC = Контроллеры + представления (Razor)
-//builder.Services.AddRazorPages(); // Работа с веб-страницами
+
+builder.Services
+    .AddTransient<IQRCodeService, QRCodeService>()
+    .AddSingleton<QRCodeGenerator>()
+    //.AddScoped<IPersonsStore, InMemoryPersonsStore>();
+    .AddSingleton<IPersonsStore, InMemoryPersonsStore>();
 
 /* --------------------------------------------------- */
 
 var app = builder.Build();
 
+//using (var scope = app.Services.CreateScope())
+//{
+//    var service_manager = scope.ServiceProvider;
+
+//    var persons = service_manager.GetRequiredService<IPersonsStore>();
+//}
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+
+app.UseStaticFiles(/*new StaticFileOptions { ServeUnknownFileTypes = true }*/);
+
 app.UseRouting(); // Разбор маршрутов
 
-//var str = app.Configuration["TestString"];
 
-//app.MapGet("/", () => "Hello World!");
-
-//app.MapGet("Test", () => str);
 app.MapGet("Test", () => app.Configuration["TestString"]);
 
 //app.MapDefaultControllerRoute(); // Регистрация стандартного маршрута для MVC

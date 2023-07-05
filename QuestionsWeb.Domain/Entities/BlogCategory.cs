@@ -1,9 +1,9 @@
-﻿namespace QuestionsWeb.Domain.Entities;
+﻿using QuestionsWeb.Domain.Entities.Base;
 
-public class BlogCategory
+namespace QuestionsWeb.Domain.Entities;
+
+public class BlogCategory : Entity
 {
-    public required int Id { get; set; }
-
     public required string Name { get; set; }
 
     public int? ParentId { get; set; }

@@ -1,8 +1,8 @@
-﻿namespace QuestionsWeb.Domain.Entities;
+﻿using QuestionsWeb.Domain.Entities.Base;
 
-public class Author
+namespace QuestionsWeb.Domain.Entities;
+
+public class Author : Entity
 {
-    public required int Id { get; set; }
-
     public required string Name { get; set; }
 }

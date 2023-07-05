@@ -2,7 +2,6 @@
 
 namespace QuestionsWeb.Domain.Entities;
 
-public class Author : Entity
+public class Author : NamedEntity
 {
-    public required string Name { get; set; }
 }

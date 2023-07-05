@@ -1,7 +1,9 @@
 ﻿<div class="col-lg-3">
 
     <div data-anim="slide-up delay-3" class="sidebar -blog">
-        <partial name="Partial/Categories"/>
+        @* <partial name="Partial/Categories"/>*@
+        @* @await Component.InvokeAsync("BlogsCategories")*@
+        <vc:blogs-categories/>
 
         <partial name="Partial/RecentPosts" />
 

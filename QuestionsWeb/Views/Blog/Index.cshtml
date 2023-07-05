@@ -1,0 +1,25 @@
+﻿<partial name="Partial/_BreadCrumbs"/>
+
+
+<partial name="Partial/_BlogsHeader"/>
+
+<section class="layout-pt-md layout-pb-lg">
+    <div data-anim-wrap class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row y-gap-30">
+
+                    @for (var i = 0; i < 9; i++)
+                    {
+                        <partial name="Partial/BlogInfoCard"/>
+                    }
+
+                </div>
+
+                <partial name="Partial/Pagination"/>
+            </div>
+
+            <partial name="Partial/RightSideBar"/>
+        </div>
+    </div>
+</section>

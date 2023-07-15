@@ -32,5 +32,18 @@ public class BlogController : Controller
         return View(infos);
     }
 
-    public IActionResult Details(int Id) => View();
+    public IActionResult Details(int Id)
+    {
+        var post = _BlogData.GetPostById(Id);
+
+        if (post is null)
+            return NotFound();
+
+        var category_name = _BlogData.GetCategoryName(post.CategoryId);
+
+        //ViewBag.CategoryName = category_name;
+        ViewData["CategoryName"] = category_name;
+
+        return View(post);
+    }
 }

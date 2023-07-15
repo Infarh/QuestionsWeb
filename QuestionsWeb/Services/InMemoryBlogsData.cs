@@ -18,4 +18,10 @@ public class InMemoryBlogsData : IBlogsData
 
         return category.Name;
     }
+
+    public BlogPost? GetPostById(int PostId)
+    {
+        var post = TestData.Posts.FirstOrDefault(post => post.Id == PostId);
+        return post;
+    }
 }

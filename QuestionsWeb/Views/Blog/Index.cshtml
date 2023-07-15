@@ -1,4 +1,6 @@
-﻿<partial name="Partial/_BreadCrumbs"/>
+﻿@model IEnumerable<BlogPostCardViewModel>
+
+<partial name="Partial/_BreadCrumbs"/>
 
 
 <partial name="Partial/_BlogsHeader"/>
@@ -9,9 +11,9 @@
             <div class="col-lg-9">
                 <div class="row y-gap-30">
 
-                    @for (var i = 0; i < 9; i++)
+                    @foreach(var post_info in Model)
                     {
-                        <partial name="Partial/BlogInfoCard"/>
+                        <vc:blog-post-card post-info="@post_info" />
                     }
 
                 </div>

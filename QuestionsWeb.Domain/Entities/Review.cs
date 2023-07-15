@@ -3,7 +3,7 @@
 namespace QuestionsWeb.Domain.Entities;
 
 /// <summary> Review. </summary>
-public class Review : NamedEntity
+public abstract class Review : NamedEntity
 {
     /// <summary> Review rate. </summary>
     public int Rate { get; set; }

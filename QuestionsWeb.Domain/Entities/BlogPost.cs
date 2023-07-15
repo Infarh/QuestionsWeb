@@ -43,10 +43,11 @@ public class BlogPost : Entity
     public required string AbstractText { get; set; }
 
     /// <summary> Tags. </summary>
-    public List<Tag> Tags { get; set; }
+    public ICollection<Tag> Tags { get; set; } = new HashSet<Tag>();
 
     /// <summary>Post reviews. </summary>
-    public List<Review>? Reviews { get; set; }
+    [InverseProperty(nameof(BlogReview.Post))]
+    public ICollection<BlogReview>? Reviews { get; set; } = new HashSet<BlogReview>();
 
     /// <summary> Preview image. </summary>
     [MaxLength(500)]

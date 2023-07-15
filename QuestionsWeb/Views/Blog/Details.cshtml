@@ -8,7 +8,9 @@
             <div class="row justify-center text-center">
                 <div class="col-auto">
                     <div data-anim="slide-up delay-1">
-                        <div class="text-14 text-purple-1 uppercase fw-500 mb-8">@ViewBag.CategoryName</div>
+                        <div class="text-14 text-purple-1 uppercase fw-500 mb-8">
+                            <a asp-controller="Blog" asp-action="Category" asp-route-Id="@Model.CategoryId">@ViewBag.CategoryName</a>
+                        </div>
 
 
                         <h1 class="page-header__title lh-14">@Model.Title</h1>

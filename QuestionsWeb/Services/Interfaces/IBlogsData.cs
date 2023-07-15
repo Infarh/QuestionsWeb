@@ -11,4 +11,6 @@ public interface IBlogsData
     string GetCategoryName(int CategoryId);
 
     BlogPost? GetPostById(int PostId);
+
+    IEnumerable<BlogPost> GetPostsByCategory(int CategoryId);
 }

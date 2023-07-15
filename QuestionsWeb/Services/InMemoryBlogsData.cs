@@ -24,4 +24,11 @@ public class InMemoryBlogsData : IBlogsData
         var post = TestData.Posts.FirstOrDefault(post => post.Id == PostId);
         return post;
     }
+
+    public IEnumerable<BlogPost> GetPostsByCategory(int CategoryId)
+    {
+        var posts = TestData.Posts.Where(post => post.CategoryId == CategoryId);
+
+        return posts;
+    }
 }

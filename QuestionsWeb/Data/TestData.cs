@@ -38,8 +38,8 @@ public static class TestData
                 Title = $"Blog post {id} title",
                 AbstractText = $"Blog post {id} abstract text",
                 Content = $"Blog post {id} text QWE",
-                PreviewImage = "~/img/blog-list/1.png",
-                MainImage = "~/img/blog/blog-single/images.png",
+                PreviewImage = "img/blog-list/1.png",
+                MainImage = "img/blog/blog-single/images.png",
                 AuthorId = authors[rnd.Next(authors.Length)].Id,
                 CategoryId = categories[rnd.Next(categories.Length)].Id,
             })

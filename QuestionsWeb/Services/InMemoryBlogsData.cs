@@ -9,4 +9,13 @@ public class InMemoryBlogsData : IBlogsData
     public IEnumerable<BlogCategory> GetCategories() => TestData.Categories;
 
     public IEnumerable<BlogPost> GetPosts() => TestData.Posts;
+    public string GetCategoryName(int CategoryId)
+    {
+        var category = TestData.Categories.FirstOrDefault(c => c.Id == CategoryId);
+
+        if (category is null)
+            throw new InvalidOperationException($"Категория с Id:{CategoryId} не найдена");
+
+        return category.Name;
+    }
 }

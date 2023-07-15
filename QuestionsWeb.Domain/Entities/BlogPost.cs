@@ -27,7 +27,7 @@ public class BlogPost : Entity
     /// <summary> Post content. </summary>
     public required string Content { get; set; }
 
-    /// <summary> Abstact text. </summary>
+    /// <summary> Abstract text. </summary>
     public required string AbstractText { get; set; }
 
     /// <summary> Tags. </summary>

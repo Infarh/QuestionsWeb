@@ -17,7 +17,7 @@ public class QuestionDBInitializer
 
     public async Task InitializeAsync()
     {
-        //await _DB.Database.EnsureDeletedAsync().ConfigureAwait(false);
+        await _DB.Database.EnsureDeletedAsync().ConfigureAwait(false);
 
         await _DB.Database.MigrateAsync().ConfigureAwait(false);
 
@@ -26,10 +26,35 @@ public class QuestionDBInitializer
 
     protected async Task SeedTestDataAsync()
     {
-        _DB.Authors.AddRange(TestData.Authors);
-        _DB.BlogCategories.AddRange(TestData.Categories);
-        _DB.BlogPosts.AddRange(TestData.Posts);
+        await using var transaction = await _DB.Database.BeginTransactionAsync().ConfigureAwait(false);
 
-        await _DB.SaveChangesAsync();
+        try
+        {
+            _DB.Authors.AddRange(TestData.Authors);
+
+            //await _DB.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Authors] ON").ConfigureAwait(false);
+            await _DB.SaveChangesAsync();
+            //await _DB.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[Authors] OFF").ConfigureAwait(false);
+
+
+            _DB.BlogCategories.AddRange(TestData.Categories);
+
+            //await _DB.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[BlogCategories] ON").ConfigureAwait(false);
+            await _DB.SaveChangesAsync();
+            //await _DB.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[BlogCategories] OFF").ConfigureAwait(false);
+
+            _DB.BlogPosts.AddRange(TestData.Posts);
+
+            //await _DB.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[BlogPosts] ON").ConfigureAwait(false);
+            await _DB.SaveChangesAsync();
+            //await _DB.Database.ExecuteSqlRawAsync("SET IDENTITY_INSERT [dbo].[BlogPosts] OFF").ConfigureAwait(false);
+
+            await transaction.CommitAsync().ConfigureAwait(false);
+        }
+        catch (Exception)
+        {
+            await transaction.RollbackAsync();
+            throw;
+        }
     }
 }

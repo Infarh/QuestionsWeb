@@ -8,12 +8,12 @@ public static class TestData
     {
         var categories = new BlogCategory[]
         {
-            new() { Id = 1, Name = "College", },
-            new() { Id = 2, Name = "Gym", },
-            new() { Id = 3, Name = "High School", },
-            new() { Id = 4, Name = "Primary", },
-            new() { Id = 5, Name = "School", },
-            new() { Id = 6, Name = "University", },
+            new() { Id = 0, Name = "College", },
+            new() { Id = 0, Name = "Gym", },
+            new() { Id = 0, Name = "High School", },
+            new() { Id = 0, Name = "Primary", },
+            new() { Id = 0, Name = "School", },
+            new() { Id = 0, Name = "University", },
         };
         Categories = categories;
 
@@ -23,7 +23,7 @@ public static class TestData
             .Range(1, 5)
             .Select(id => new Author
             {
-                Id = id,
+                Id = 0,
                 Name = $"Author-{id}",
             })
             .ToArray();
@@ -33,14 +33,16 @@ public static class TestData
             .Range(1, 50)
             .Select(id => new BlogPost
             {
-                Id = id,
+                Id = 0,
                 Date = DateTimeOffset.Now.AddDays(rnd.Next(5, 150)),
                 Title = $"Blog post {id} title",
                 AbstractText = $"Blog post {id} abstract text",
                 PreviewImage = "/img/blog-list/1.png",
                 MainImage = "/img/blog/blog-single/images.png",
-                AuthorId = authors[rnd.Next(authors.Length)].Id,
-                CategoryId = categories[rnd.Next(categories.Length)].Id,
+                AuthorId = 0,
+                Author = authors[rnd.Next(authors.Length)],
+                CategoryId = 0,
+                Category = categories[rnd.Next(categories.Length)],
                 Content = """
                           <h4 class="text-18 fw-500">What makes a good brand book?</h4>
                           <p class="mt-30">Sed viverra ipsum nunc aliquet bibendum enim facilisis gravida. Diam phasellus vestibulum lorem sed risus ultricies. Magna sit amet purus gravida quis blandit. Arcu cursus vitae congue mauris. Nunc mattis enim ut tellus elementum sagittis vitae et leo. Semper risus in hendrerit gravida rutrum quisque non. At urna condimentum mattis pellentesque id nibh tortor. A erat nam at lectus urna duis convallis convallis tellus. Sit amet mauris commodo quis imperdiet massa. Vitae congue eu consequat ac felis.</p>

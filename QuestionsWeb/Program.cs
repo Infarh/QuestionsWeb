@@ -29,7 +29,8 @@ builder.Services
     .AddSingleton<QRCodeGenerator>()
     //.AddScoped<IPersonsStore, InMemoryPersonsStore>();
     .AddSingleton<IPersonsStore, InMemoryPersonsStore>()
-    .AddSingleton<IBlogsData, InMemoryBlogsData>();
+    .AddSingleton<IBlogsData, InMemoryBlogsData>()
+    .AddTransient<QuestionDbInitializer>();
 
 /* --------------------------------------------------- */
 

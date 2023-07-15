@@ -30,18 +30,17 @@ builder.Services
     //.AddScoped<IPersonsStore, InMemoryPersonsStore>();
     .AddSingleton<IPersonsStore, InMemoryPersonsStore>()
     .AddSingleton<IBlogsData, InMemoryBlogsData>()
-    .AddTransient<QuestionDbInitializer>();
+    .AddTransient<QuestionDBInitializer>();
 
 /* --------------------------------------------------- */
 
 var app = builder.Build();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var service_manager = scope.ServiceProvider;
-
-//    var persons = service_manager.GetRequiredService<IPersonsStore>();
-//}
+using (var scope = app.Services.CreateScope())
+{
+    var db_initializer = scope.ServiceProvider.GetRequiredService<QuestionDBInitializer>();
+    await db_initializer.InitializeAsync();
+}
 
 if (app.Environment.IsDevelopment())
 {

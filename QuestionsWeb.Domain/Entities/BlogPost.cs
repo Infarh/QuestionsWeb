@@ -12,13 +12,13 @@ public class BlogPost : Entity
 
     /// <summary> Category </summary>
     [ForeignKey(nameof(CategoryId))]
-    public BlogCategory Category { get; set; }
+    public BlogCategory Category { get; set; } = null!;
 
     /// <summary> Post author Id </summary>
     public required int AuthorId { get; set; }
 
     /// <summary> Post author </summary>
-    public Author Author { get; set; }
+    public Author Author { get; set; } = null!;
 
     /// <summary> Post title. </summary>
     [MaxLength(255)]

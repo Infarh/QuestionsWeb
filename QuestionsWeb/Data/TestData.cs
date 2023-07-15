@@ -34,10 +34,10 @@ public static class TestData
             .Select(id => new BlogPost
             {
                 Id = id,
-                Time = DateTimeOffset.Now.AddDays(rnd.Next(5, 150)),
+                Date = DateTimeOffset.Now.AddDays(rnd.Next(5, 150)),
                 Title = $"Blog post {id} title",
                 AbstractText = $"Blog post {id} abstract text",
-                Text = $"Blog post {id} text QWE",
+                Content = $"Blog post {id} text QWE",
                 PreviewImage = "~/img/blog-list/1.png",
                 MainImage = "~/img/blog/blog-single/images.png",
                 AuthorId = authors[rnd.Next(authors.Length)].Id,

@@ -5,6 +5,7 @@ using QuestionsWeb.Domain.Entities.Base;
 namespace QuestionsWeb.Domain.Entities;
 
 /// <summary> Blog post. </summary>
+//[Table("Posts")]
 public class BlogPost : Entity
 {
     /// <summary> Category id. </summary>

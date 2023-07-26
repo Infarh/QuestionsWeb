@@ -1,9 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using QuestionsWeb.Domain.Entities;
+using QuestionsWeb.Domain.Entities.Identity;
 
 namespace QuestionsWeb.DAL.Context;
 
-public class QuestionsDB : DbContext
+public class QuestionsDB : IdentityDbContext<User, Role, string>
 {
     public QuestionsDB(DbContextOptions<QuestionsDB> opt) : base(opt)
     {

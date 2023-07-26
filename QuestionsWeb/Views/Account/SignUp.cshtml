@@ -1,4 +1,5 @@
-﻿@{
+﻿@model RegisterUserViewModel
+@{
     Layout = "_LayoutAccount";
 }
 
@@ -21,28 +22,33 @@
                         <h3 class="text-30 lh-13">Sign Up</h3>
                         <p class="mt-10">Already have an account? <a asp-controller="Account" asp-action="Login" class="text-purple-1">Log in</a></p>
 
-                        <form class="contact-form respondForm__form row y-gap-20 pt-30" action="#">
+                        <form class="contact-form respondForm__form row y-gap-20 pt-30" 
+                              asp-action="SignUp" asp-antiforgery="true">
+
                             <div class="col-lg-6">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Email address *</label>
                                 <input type="text" name="title" placeholder="Name">
                             </div>
                             <div class="col-lg-6">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Username *</label>
-                                <input type="text" name="title" placeholder="Name">
+                                <input asp-for="UserName" placeholder="Name">
+                                <span asp-validation-for="UserName"></span>
                             </div>
                             <div class="col-lg-6">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Password *</label>
-                                <input type="text" name="title" placeholder="Name">
+                                <input asp-for="Password" placeholder="Password">
+                                <span asp-validation-for="Password"></span>
                             </div>
                             <div class="col-lg-6">
                                 <label class="text-16 lh-1 fw-500 text-dark-1 mb-10">Confirm Password *</label>
-                                <input type="text" name="title" placeholder="Name">
+                                <input asp-for="PasswordConfirm" placeholder="Password">
                             </div>
                             <div class="col-12">
                                 <button type="submit" name="submit" id="submit" class="button -md -green-1 text-dark-1 fw-500 w-1/1">
                                     Register
                                 </button>
                             </div>
+
                         </form>
 
                         <div class="lh-12 text-dark-1 fw-500 text-center mt-20">Or sign in using</div>

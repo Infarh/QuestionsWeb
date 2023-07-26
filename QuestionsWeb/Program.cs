@@ -1,7 +1,9 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using QRCoder;
 using QuestionsWeb.DAL.Context;
+using QuestionsWeb.Domain.Entities.Identity;
 using QuestionsWeb.Services;
 using QuestionsWeb.Services.Interfaces;
 
@@ -32,6 +34,41 @@ builder.Services
     //.AddSingleton<IBlogsData, InMemoryBlogsData>()
     .AddScoped<IBlogsData, DbBlogPostData>()
     .AddTransient<QuestionDBInitializer>();
+
+builder.Services.AddIdentity<User, Role>(/*opt => opt.User...*/)
+    .AddEntityFrameworkStores<QuestionsDB>()
+    .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+#if DEBUG
+    opt.Password.RequireDigit = false;
+    opt.Password.RequireLowercase = false;
+    opt.Password.RequireUppercase = false;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequiredLength = 3;
+    opt.Password.RequiredUniqueChars = 3;
+#endif
+
+    opt.User.RequireUniqueEmail = false;
+    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890";
+
+    opt.Lockout.AllowedForNewUsers = false;
+    opt.Lockout.MaxFailedAccessAttempts = 10;
+    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+});
+
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    opt.Cookie.Name = "Question.Cookie";
+    opt.Cookie.HttpOnly = true;
+
+    opt.LoginPath = "/Account/Login";
+    opt.LogoutPath = "/Account/Logout";
+    opt.AccessDeniedPath = "/Account/AccessDenied";
+
+    opt.SlidingExpiration = true;
+});
 
 /* --------------------------------------------------- */
 

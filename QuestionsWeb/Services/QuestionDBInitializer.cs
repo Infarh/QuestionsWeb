@@ -73,7 +73,7 @@ public class QuestionDBInitializer
 
             var admin = new User
             {
-                UserName = User.Administrator,
+                UserName = User.Administrator
             };
 
             var creation_result = await _UserManager.CreateAsync(admin, User.DefaultAdminPassword);

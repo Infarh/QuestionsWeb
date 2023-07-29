@@ -26,6 +26,15 @@ public class AccountController : Controller
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> SignUp(RegisterUserViewModel model)
     {
+        //if (model.Password != model.PasswordConfirm)
+        //{
+        //    ModelState.AddModelError(nameof(RegisterUserViewModel.Password), "Пароли не совпадают");
+        //    return View(model);
+        //}
+
+        if (!ModelState.IsValid)
+            return View(model);
+
         var user = new User
         {
             UserName = model.UserName,

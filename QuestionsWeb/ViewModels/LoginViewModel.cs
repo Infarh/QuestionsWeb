@@ -14,4 +14,9 @@ public class LoginViewModel
     [DataType(DataType.Password)]
     [StringLength(80, MinimumLength = 3)]
     public string Password { get; set; }
+
+    [Display(Name = "Запомнить")]
+    public bool RememberMe { get; set; }
+
+    public string? ReturnUrl { get; set; }
 }

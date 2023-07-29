@@ -70,8 +70,6 @@ builder.Services.ConfigureApplicationCookie(opt =>
     opt.SlidingExpiration = true;
 });
 
-
-
 /* --------------------------------------------------- */
 
 var app = builder.Build();

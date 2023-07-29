@@ -4,12 +4,16 @@ using Microsoft.EntityFrameworkCore;
 using QRCoder;
 using QuestionsWeb.DAL.Context;
 using QuestionsWeb.Domain.Entities.Identity;
+using QuestionsWeb.Infrastructure.Conventions;
 using QuestionsWeb.Services;
 using QuestionsWeb.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews(); // Инфраструктура MVC = Контроллеры + представления (Razor)
+builder.Services.AddControllersWithViews(opt =>
+{
+    opt.Conventions.Add(new AreaControllerConvention());
+}); // Инфраструктура MVC = Контроллеры + представления (Razor)
 
 var db_connection_string = builder.Configuration.GetConnectionString("SQL");
 

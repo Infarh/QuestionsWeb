@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using QuestionsWeb.DAL.Context;
 
@@ -11,9 +12,11 @@ using QuestionsWeb.DAL.Context;
 namespace QuestionsWeb.DAL.Migrations
 {
     [DbContext(typeof(QuestionsDB))]
-    partial class QuestionsDBModelSnapshot : ModelSnapshot
+    [Migration("20230726171931_Identity")]
+    partial class Identity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

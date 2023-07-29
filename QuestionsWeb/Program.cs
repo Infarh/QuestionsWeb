@@ -1,13 +1,19 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using QRCoder;
 using QuestionsWeb.DAL.Context;
+using QuestionsWeb.Domain.Entities.Identity;
+using QuestionsWeb.Infrastructure.Conventions;
 using QuestionsWeb.Services;
 using QuestionsWeb.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews(); // Инфраструктура MVC = Контроллеры + представления (Razor)
+builder.Services.AddControllersWithViews(opt =>
+{
+    opt.Conventions.Add(new AreaControllerConvention());
+}); // Инфраструктура MVC = Контроллеры + представления (Razor)
 
 var db_connection_string = builder.Configuration.GetConnectionString("SQL");
 
@@ -33,6 +39,41 @@ builder.Services
     .AddScoped<IBlogsData, DbBlogPostData>()
     .AddTransient<QuestionDBInitializer>();
 
+builder.Services.AddIdentity<User, Role>(/*opt => opt.User...*/)
+    .AddEntityFrameworkStores<QuestionsDB>()
+    .AddDefaultTokenProviders();
+
+builder.Services.Configure<IdentityOptions>(opt =>
+{
+#if DEBUG
+    opt.Password.RequireDigit = false;
+    opt.Password.RequireLowercase = false;
+    opt.Password.RequireUppercase = false;
+    opt.Password.RequireNonAlphanumeric = false;
+    opt.Password.RequiredLength = 3;
+    opt.Password.RequiredUniqueChars = 3;
+#endif
+
+    opt.User.RequireUniqueEmail = false;
+    opt.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ1234567890";
+
+    opt.Lockout.AllowedForNewUsers = false;
+    opt.Lockout.MaxFailedAccessAttempts = 10;
+    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+});
+
+builder.Services.ConfigureApplicationCookie(opt =>
+{
+    opt.Cookie.Name = "Question.Cookie";
+    opt.Cookie.HttpOnly = true;
+
+    opt.LoginPath = "/Account/Login";
+    opt.LogoutPath = "/Account/Logout";
+    opt.AccessDeniedPath = "/Account/AccessDenied";
+
+    opt.SlidingExpiration = true;
+});
+
 /* --------------------------------------------------- */
 
 var app = builder.Build();
@@ -52,11 +93,20 @@ app.UseStaticFiles(/*new StaticFileOptions { ServeUnknownFileTypes = true }*/);
 
 app.UseRouting(); // Разбор маршрутов
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapGet("Test", () => app.Configuration["TestString"]);
 
 //app.MapDefaultControllerRoute(); // Регистрация стандартного маршрута для MVC
-app.MapControllerRoute("default", "/{controller=Home}/{action=Index}/{id?}"); // Определение маршрута по умолчанию
+
+app.MapControllerRoute(
+    "areas",
+    "{area:exists}/{controller=Home}/{action=Index}/{id?}"); 
+
+app.MapControllerRoute(
+    "default",
+    "{controller=Home}/{action=Index}/{id?}"); // Определение маршрута по умолчанию
 
 /* --------------------------------------------------- */
 

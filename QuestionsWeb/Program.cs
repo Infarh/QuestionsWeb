@@ -89,6 +89,8 @@ app.UseStaticFiles(/*new StaticFileOptions { ServeUnknownFileTypes = true }*/);
 
 app.UseRouting(); // Разбор маршрутов
 
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapGet("Test", () => app.Configuration["TestString"]);
 

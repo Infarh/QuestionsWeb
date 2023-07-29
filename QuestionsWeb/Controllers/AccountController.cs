@@ -70,5 +70,11 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Home");
     }
 
-    public IActionResult Login() => View();
+    public IActionResult Login() => View(new LoginViewModel());
+
+    [HttpPost, ValidateAntiForgeryToken]
+    public async Task<IActionResult> Login(LoginViewModel model)
+    {
+        return RedirectToAction("Index", "Home");
+    }
 }

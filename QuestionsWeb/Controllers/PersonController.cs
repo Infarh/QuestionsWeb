@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using QuestionsWeb.Models;
+using QuestionsWeb.Domain.Entities.Identity;
 using QuestionsWeb.Services.Interfaces;
 
 namespace QuestionsWeb.Controllers;
@@ -46,6 +46,8 @@ public class PersonController : Controller
 
     //}
 
+    [Authorize(Roles = Role.Adinistrators)]
+    //[Authorize(Roles = "Users,Administrators")]
     public IActionResult Delete(int id)
     {
         var person = _PersonsStore.GetById(id);
@@ -57,6 +59,7 @@ public class PersonController : Controller
     }
 
     [HttpPost]
+    [Authorize(Roles = Role.Adinistrators)]
     public IActionResult DeleteConfirm(int id)
     {
         var person = _PersonsStore.GetById(id);

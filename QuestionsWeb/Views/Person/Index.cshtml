@@ -1,4 +1,5 @@
-﻿@model IEnumerable<QuestionsWeb.Models.Person>
+﻿@using QuestionsWeb.Domain.Entities.Identity
+@model IEnumerable<QuestionsWeb.Models.Person>
 
 <section class="layout-pt-lg layout-pb-md">
     
@@ -11,7 +12,10 @@
                 <th>Фамилия</th>
                 <th>Имя</th>
                 <th>Комментарий</th>
-                <th></th>
+                @if (User.IsInRole(Role.Adinistrators))
+                {
+                    <th></th>
+                }
             </tr>
             </thead>
 
@@ -29,9 +33,12 @@
                     </td>
                     <td>@person.Name</td>
                     <td>@person.Description</td>
-                    <td>
-                        <a asp-action="Delete" asp-route-id="@person.Id" class="text-danger">del.</a>
-                    </td>
+                    @if (User.IsInRole(Role.Adinistrators))
+                    {
+                        <td>
+                            <a asp-action="Delete" asp-route-id="@person.Id" class="text-danger">del.</a>
+                        </td>
+                    }
                 </tr>
             }
             </tbody>

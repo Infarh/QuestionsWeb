@@ -1,10 +1,12 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using QuestionsWeb.Domain.Entities.Identity;
 using QuestionsWeb.ViewModels;
 
 namespace QuestionsWeb.Controllers;
 
+[Authorize]
 public class AccountController : Controller
 {
     private readonly UserManager<User> _UserManager;
@@ -21,8 +23,10 @@ public class AccountController : Controller
         _Logger = Logger;
     }
 
+    [AllowAnonymous]
     public IActionResult SignUp() => View(new RegisterUserViewModel());
 
+    [AllowAnonymous]
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> SignUp(RegisterUserViewModel model)
     {
@@ -40,9 +44,6 @@ public class AccountController : Controller
             UserName = model.UserName,
         };
 
-        var confirm_email_token = await _UserManager.GenerateEmailConfirmationTokenAsync(user);
-        var url = Url.Action("ConfirmEmail", new { token = confirm_email_token }); 
-
         var creation_result = await _UserManager.CreateAsync(user, model.Password);
         if (creation_result.Succeeded)
         {
@@ -51,6 +52,9 @@ public class AccountController : Controller
             await _UserManager.AddToRoleAsync(user, Role.Users);
 
             await _SignInManager.SignInAsync(user, isPersistent: false);
+
+            //var confirm_email_token = await _UserManager.GenerateEmailConfirmationTokenAsync(user);
+            //var url = Url.Action("ConfirmEmail", new { token = confirm_email_token, user = user.UserName });
 
             return RedirectToAction("Index", "Home");
         }
@@ -64,14 +68,17 @@ public class AccountController : Controller
         return View(model);
     }
 
+    [AllowAnonymous]
     public async Task<IActionResult> ConfirmEmail(string token)
     {
         //await _UserManager.ConfirmEmailAsync(User.Identity as User, token);
         return RedirectToAction("Index", "Home");
     }
 
+    [AllowAnonymous]
     public IActionResult Login(string? ReturnUrl) => View(new LoginViewModel { ReturnUrl = ReturnUrl });
 
+    [AllowAnonymous]
     [HttpPost, ValidateAntiForgeryToken]
     public async Task<IActionResult> Login(LoginViewModel model)
     {
@@ -127,7 +134,8 @@ public class AccountController : Controller
         return RedirectToAction("Index", "Home");
     }
 
-    public IActionResult AccessDenied() => View();
+    [AllowAnonymous]
+    public IActionResult AccessDenied(string? ReturnUrl) => View();
 
     public IActionResult Profile() => NotFound();
 }

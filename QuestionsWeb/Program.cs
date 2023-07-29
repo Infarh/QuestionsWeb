@@ -95,7 +95,14 @@ app.UseAuthorization();
 app.MapGet("Test", () => app.Configuration["TestString"]);
 
 //app.MapDefaultControllerRoute(); // Регистрация стандартного маршрута для MVC
-app.MapControllerRoute("default", "/{controller=Home}/{action=Index}/{id?}"); // Определение маршрута по умолчанию
+
+app.MapControllerRoute(
+    "areas",
+    "{area:exists}/{controller=Home}/{action=Index}/{id?}"); 
+
+app.MapControllerRoute(
+    "default",
+    "{controller=Home}/{action=Index}/{id?}"); // Определение маршрута по умолчанию
 
 /* --------------------------------------------------- */
 

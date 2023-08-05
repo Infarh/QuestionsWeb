@@ -19,7 +19,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\QuestionsWeb.DAL\QuestionsWeb.DAL.csproj" />
+    <ProjectReference Include="..\..\Data\QuestionsWeb.DAL.Sqlite\QuestionsWeb.DAL.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Data\QuestionsWeb.DAL.SqlServer\QuestionsWeb.DAL.SqlServer.csproj" />
     <ProjectReference Include="..\..\Services\QuestionsWeb.Services\QuestionsWeb.Services.csproj" />
   </ItemGroup>
 

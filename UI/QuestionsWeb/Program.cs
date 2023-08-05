@@ -5,7 +5,6 @@ using QuestionsWeb.DAL.Context;
 using QuestionsWeb.Domain.Entities.Identity;
 using QuestionsWeb.Infrastructure.Conventions;
 using QuestionsWeb.Services;
-using QuestionsWeb.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -29,14 +28,8 @@ var edited_connection_string = db_string_builder.ConnectionString;
 
 builder.Services.AddDbContext<QuestionsDB>(opt => opt.UseSqlServer(db_connection_string));
 
-builder.Services
-    .AddTransient<IQRCodeService, QRCodeService>()
-    //.AddSingleton<QRCodeGenerator>() //todo: решить проблему регистрации сервисов
-    //.AddScoped<IPersonsStore, InMemoryPersonsStore>();
-    .AddSingleton<IPersonsStore, InMemoryPersonsStore>()
-    //.AddSingleton<IBlogsData, InMemoryBlogsData>()
-    .AddScoped<IBlogsData, DbBlogPostData>()
-    .AddTransient<QuestionDBInitializer>();
+builder.Services.AddQuestionsWebServices();
+    
 
 builder.Services.AddIdentity<User, Role>(/*opt => opt.User...*/)
     .AddEntityFrameworkStores<QuestionsDB>()

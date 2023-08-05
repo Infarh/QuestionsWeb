@@ -11,4 +11,10 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\QuestionsWeb.DAL.Sqlite\QuestionsWeb.DAL.Sqlite.csproj" />
+    <ProjectReference Include="..\..\Data\QuestionsWeb.DAL.SqlServer\QuestionsWeb.DAL.SqlServer.csproj" />
+    <ProjectReference Include="..\QuestionsWeb.Services\QuestionsWeb.Services.csproj" />
+  </ItemGroup>
+
 </Project>

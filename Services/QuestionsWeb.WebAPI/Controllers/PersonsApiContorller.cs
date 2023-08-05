@@ -25,21 +25,21 @@ public class PersonsApiController : ControllerBase
     //}
 
     [HttpGet]
-    public IEnumerable<Person> GetAll() => _PersonsStore.GetAll();
+    public async Task<IEnumerable<Person>> GetAll() => await _PersonsStore.GetAll();
 
     [HttpGet("{Id}")]
-    public IActionResult GetById(int Id)
+    public async Task<IActionResult> GetById(int Id)
     {
-        var person = _PersonsStore.GetById(Id);
+        var person = await _PersonsStore.GetById(Id);
         if (person is null)
             return NotFound(new { Message = $"Person with id: {Id} not exists", Id });
         return Ok(person);
     }
 
     [HttpDelete("{Id}")] // Delete -> api/persons/3
-    public IActionResult Delete(int Id)
+    public async Task<IActionResult> Delete(int Id)
     {
-        var person = _PersonsStore.Delete(Id);
+        var person = await _PersonsStore.Delete(Id);
         if (person is null)
             return NotFound();
         return Ok(person);

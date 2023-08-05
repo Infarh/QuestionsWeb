@@ -18,15 +18,15 @@ public class PersonsApiClient : IPersonsStore
     }
 
 
-    public IEnumerable<Person> GetAll()
+    public async Task<IEnumerable<Person>> GetAll()
     {
-        var persons = _Client.GetFromJsonAsync<IEnumerable<Person>>("api/persons").Result;
+        var persons =  await _Client.GetFromJsonAsync<IEnumerable<Person>>("api/persons");
         return persons ?? throw new InvalidOperationException("Не удалось получить данные от WebAPI");
     }
 
-    public Person? GetById(int Id)
+    public async Task<Person?> GetById(int Id)
     {
-        var response = _Client.GetAsync($"api/persons/{Id}").Result;
+        var response = await _Client.GetAsync($"api/persons/{Id}");
 
         if (response.StatusCode == HttpStatusCode.NotFound)
             return null;
@@ -39,9 +39,9 @@ public class PersonsApiClient : IPersonsStore
         return person;
     }
 
-    public Person? Delete(int Id)
+    public async Task<Person?> Delete(int Id)
     {
-        var response = _Client.DeleteAsync($"api/persons/{Id}").Result;
+        var response = await _Client.DeleteAsync($"api/persons/{Id}");
 
         if (response.StatusCode == HttpStatusCode.NotFound)
             return null;

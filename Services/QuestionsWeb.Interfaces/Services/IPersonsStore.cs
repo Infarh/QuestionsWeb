@@ -4,9 +4,9 @@ namespace QuestionsWeb.Services.Interfaces;
 
 public interface IPersonsStore
 {
-    IEnumerable<Person> GetAll();
+    Task<IEnumerable<Person>> GetAll();
 
-    Person? GetById(int Id);
+    Task<Person?> GetById(int Id);
 
-    Person? Delete(int id);
+    Task<Person?> Delete(int id);
 }

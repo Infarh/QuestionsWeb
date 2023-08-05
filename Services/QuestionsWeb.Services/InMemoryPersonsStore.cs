@@ -12,18 +12,18 @@ public class InMemoryPersonsStore : IPersonsStore, IDisposable
         new() { Id = 3, LastName = "Сидоров", Name = "Сидор" },
     };
 
-    public IEnumerable<Person> GetAll() => _Persons;
+    public Task<IEnumerable<Person>> GetAll() => Task.FromResult(_Persons.AsEnumerable());
 
-    public Person? GetById(int Id)
+    public Task<Person?> GetById(int Id)
     {
         var person = _Persons.FirstOrDefault(x => x.Id == Id);
 
-        return person;
+        return Task.FromResult(person);
     }
 
-    public Person? Delete(int id)
+    public async Task<Person?> Delete(int id)
     {
-        var person = GetById(id);
+        var person = await GetById(id);
 
         if (person is null)
             return null;

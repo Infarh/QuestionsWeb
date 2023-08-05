@@ -15,16 +15,16 @@ public class PersonController : Controller
         _PersonsStore = PersonsStore;
     }
 
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
-        var persons = _PersonsStore.GetAll();
+        var persons = await _PersonsStore.GetAll();
 
         return View(persons);
     }
 
-    public IActionResult Details(int id)
+    public async Task<IActionResult> Details(int id)
     {
-        var person = _PersonsStore.GetById(id);
+        var person = await _PersonsStore.GetById(id);
 
         if (person == null)
             return NotFound();
@@ -48,9 +48,9 @@ public class PersonController : Controller
 
     [Authorize(Roles = Role.Adinistrators)]
     //[Authorize(Roles = "Users,Administrators")]
-    public IActionResult Delete(int id)
+    public async Task<IActionResult> Delete(int id)
     {
-        var person = _PersonsStore.GetById(id);
+        var person = await _PersonsStore.GetById(id);
 
         if (person == null)
             return NotFound();
@@ -60,9 +60,9 @@ public class PersonController : Controller
 
     [HttpPost]
     [Authorize(Roles = Role.Adinistrators)]
-    public IActionResult DeleteConfirm(int id)
+    public async Task<IActionResult> DeleteConfirm(int id)
     {
-        var person = _PersonsStore.GetById(id);
+        var person = await _PersonsStore.GetById(id);
 
         if (person == null)
             return NotFound();

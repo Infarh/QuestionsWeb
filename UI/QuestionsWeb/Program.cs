@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
-using Microsoft.EntityFrameworkCore;
 using QuestionsWeb.DAL.Context;
 using QuestionsWeb.DAL.Sqlite;
 using QuestionsWeb.DAL.SqlServer;

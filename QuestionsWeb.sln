@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Questionweb.ConsoleTest", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestionsWeb.WebAPI", "Services\QuestionsWeb.WebAPI\QuestionsWeb.WebAPI.csproj", "{037F42F0-41CF-42D6-9AE4-B5ACBAFCF1FA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuestionsWeb.WebAPI.Clients", "Services\QuestionsWeb.WebAPI.Clients\QuestionsWeb.WebAPI.Clients.csproj", "{9886A210-54DE-4207-87B7-7DDB0E898B20}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{037F42F0-41CF-42D6-9AE4-B5ACBAFCF1FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{037F42F0-41CF-42D6-9AE4-B5ACBAFCF1FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{037F42F0-41CF-42D6-9AE4-B5ACBAFCF1FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9886A210-54DE-4207-87B7-7DDB0E898B20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9886A210-54DE-4207-87B7-7DDB0E898B20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9886A210-54DE-4207-87B7-7DDB0E898B20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9886A210-54DE-4207-87B7-7DDB0E898B20}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,6 +93,7 @@ Global
 		{05F0ACDC-B4C5-4FBF-BC7B-B835724C4AA9} = {F1CF0CB7-270D-4182-9021-5FDF0169C648}
 		{F38A7430-0C4E-47DB-9D30-003766527A18} = {E44C46A6-CB25-469E-BDF3-1F11A8E135D9}
 		{037F42F0-41CF-42D6-9AE4-B5ACBAFCF1FA} = {FB94636C-C016-4B05-BF8B-9A3BC0852DC9}
+		{9886A210-54DE-4207-87B7-7DDB0E898B20} = {FB94636C-C016-4B05-BF8B-9A3BC0852DC9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {5A809BAB-F97A-4ECB-ABE4-08EF53D461A1}

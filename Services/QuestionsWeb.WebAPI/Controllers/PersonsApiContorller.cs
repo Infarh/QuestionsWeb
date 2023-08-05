@@ -35,4 +35,13 @@ public class PersonsApiController : ControllerBase
             return NotFound(new { Message = $"Person with id: {Id} not exists", Id });
         return Ok(person);
     }
+
+    [HttpDelete("{Id}")] // Delete -> api/persons/3
+    public IActionResult Delete(int Id)
+    {
+        var person = _PersonsStore.Delete(Id);
+        if (person is null)
+            return NotFound();
+        return Ok(person);
+    }
 }

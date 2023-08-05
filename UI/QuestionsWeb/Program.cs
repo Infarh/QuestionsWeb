@@ -2,6 +2,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using QuestionsWeb.DAL.Context;
+using QuestionsWeb.DAL.Sqlite;
+using QuestionsWeb.DAL.SqlServer;
 using QuestionsWeb.Domain.Entities.Identity;
 using QuestionsWeb.Infrastructure.Conventions;
 using QuestionsWeb.Services;
@@ -13,20 +15,36 @@ builder.Services.AddControllersWithViews(opt =>
     opt.Conventions.Add(new AreaControllerConvention());
 }); // Инфраструктура MVC = Контроллеры + представления (Razor)
 
-var db_connection_string = builder.Configuration.GetConnectionString("SQL");
+var db_config = builder.Configuration.GetSection("QuestionWebDB");
+var db_type = db_config["type"];
 
-var db_string_builder = new SqlConnectionStringBuilder(db_connection_string);
+var db_connection_string = db_config.GetConnectionString(db_type);
 
-var user = builder.Configuration.GetSection("db")["User"];
-var pass = builder.Configuration.GetSection("db")["Password"];
+var user = db_config["User"];
+var pass = db_config["Password"];
 
-db_string_builder.UserID = user;
-db_string_builder.Password = pass;
+if (!string.IsNullOrWhiteSpace(user) && !string.IsNullOrWhiteSpace(pass))
+{
+    var db_string_builder = new SqlConnectionStringBuilder(db_connection_string)
+    {
+        UserID = user,
+        Password = pass
+    };
 
-var edited_connection_string = db_string_builder.ConnectionString;
-//builder.Services.AddDbContext<QuestionsDB>(opt => opt.UseSqlServer(edited_connection_string));
+    db_connection_string = db_string_builder.ConnectionString;
+}
 
-builder.Services.AddDbContext<QuestionsDB>(opt => opt.UseSqlServer(db_connection_string));
+switch (db_type?.ToLowerInvariant())
+{
+    case "sql":
+        builder.Services.AddQuestionsWebDBSqlServer(db_connection_string);
+        break;
+
+    case "sqlite":
+        builder.Services.AddQuestionsWebDBSqlite(db_connection_string);
+        break;
+}
+
 
 builder.Services.AddQuestionsWebServices();
     

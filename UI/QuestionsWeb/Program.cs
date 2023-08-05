@@ -5,6 +5,7 @@ using QuestionsWeb.DAL.Sqlite;
 using QuestionsWeb.DAL.SqlServer;
 using QuestionsWeb.Domain.Entities.Identity;
 using QuestionsWeb.Infrastructure.Conventions;
+using QuestionsWeb.Interfaces.Services;
 using QuestionsWeb.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -44,8 +45,7 @@ switch (db_type?.ToLowerInvariant())
         break;
 }
 
-
-builder.Services.AddQuestionsWebServices();
+builder.Services.AddQuestionsWebServices(builder.Configuration);
     
 
 builder.Services.AddIdentity<User, Role>(/*opt => opt.User...*/)

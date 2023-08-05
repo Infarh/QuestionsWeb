@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
-using QRCoder;
 using QuestionsWeb.DAL.Context;
 using QuestionsWeb.Domain.Entities.Identity;
 using QuestionsWeb.Infrastructure.Conventions;
@@ -32,7 +31,7 @@ builder.Services.AddDbContext<QuestionsDB>(opt => opt.UseSqlServer(db_connection
 
 builder.Services
     .AddTransient<IQRCodeService, QRCodeService>()
-    .AddSingleton<QRCodeGenerator>()
+    //.AddSingleton<QRCodeGenerator>() //todo: решить проблему регистрации сервисов
     //.AddScoped<IPersonsStore, InMemoryPersonsStore>();
     .AddSingleton<IPersonsStore, InMemoryPersonsStore>()
     //.AddSingleton<IBlogsData, InMemoryBlogsData>()

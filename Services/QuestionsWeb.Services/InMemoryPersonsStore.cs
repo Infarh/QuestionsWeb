@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using QuestionsWeb.Models;
+﻿using QuestionsWeb.Models;
 using QuestionsWeb.Services.Interfaces;
 
 namespace QuestionsWeb.Services;

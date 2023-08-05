@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\QuestionsWeb.DAL\QuestionsWeb.DAL.csproj" />
+    <ProjectReference Include="..\QuestionsWeb.Interfaces\QuestionsWeb.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>
